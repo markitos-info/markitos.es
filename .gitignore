@@ -1,0 +1,16 @@
+node_modules
+apps/**/node_modules/
+apps/**/.env
+apps/api/cdn/*.jpg
+apps/**/*.jpg
+.env
+**/.env
+.DS_Store
+**/.DS_Store
+
+# Local .terraform directories
+cloud/infrastructure/.terraform*
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+.DS_Store

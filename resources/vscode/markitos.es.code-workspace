@@ -1,0 +1,26 @@
+{
+  "folders": [
+    {
+      "path": "../.."
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true,
+    "sqltools.connections": [
+      {
+        "mysqlOptions": {
+          "authProtocol": "default",
+          "enableSsl": "Disabled"
+        },
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 3306,
+        "driver": "MariaDB",
+        "name": "markitos.es",
+        "database": "markitos",
+        "username": "markitos",
+        "password": "markitos"
+      }
+    ]
+  }
+}
