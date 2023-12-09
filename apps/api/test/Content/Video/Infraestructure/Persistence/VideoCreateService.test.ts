@@ -19,7 +19,7 @@ const createRequest: VideoCreateRequest = VideoMother.VideoCreateRequest();
 
 describe('VideoCreateService', () => {
     it('shoud create a video', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             await videos.delete(new Id(createRequest.id));
@@ -27,7 +27,7 @@ describe('VideoCreateService', () => {
     });
 
     it('shoud get an existing video', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             const video: Video = await videos.get(new Id(createRequest.id));
@@ -39,7 +39,7 @@ describe('VideoCreateService', () => {
     });
 
     it('shoud delete an existing video', () => {
-        async () => {
+        async() => {
             await creator.execute(createRequest);
             await videos.delete(new Id(createRequest.id));
 
@@ -52,7 +52,7 @@ describe('VideoCreateService', () => {
     });
 
     it('shoud list videos without pattern', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
             await creator.execute(
                 VideoMother.VideoCreateRequest(SharedMother.VALID_ID_2)
@@ -75,7 +75,7 @@ describe('VideoCreateService', () => {
         const prefixToSearch: string =
             Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-        expect(async () => {
+        expect(async() => {
             await creator.execute(
                 VideoMother.VideoCreateRequest(SharedMother.VALID_ID)
             );

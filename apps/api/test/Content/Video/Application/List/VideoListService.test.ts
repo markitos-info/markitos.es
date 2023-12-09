@@ -8,7 +8,7 @@ const request: VideoListRequest = VideoMother.VideoListRequest();
 const sut: VideoListService = VideoMother.VideoListService(respository);
 
 describe('VideoListService', () => {
-    it('shoud get a list of videos collection', async () => {
+    it('shoud get a list of videos collection', async() => {
         await sut.execute(request);
 
         expect(respository.listCalled).toBeTruthy();

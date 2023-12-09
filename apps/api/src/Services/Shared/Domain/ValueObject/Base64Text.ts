@@ -13,7 +13,7 @@ class Base64Text {
         try {
             decodeURIComponent(
                 Array.prototype.map
-                    .call(atob(this.value), function (c) {
+                    .call(atob(this.value), function(c) {
                         return (
                             '%' +
                             ('00' + c.charCodeAt(0).toString(16)).slice(-2)

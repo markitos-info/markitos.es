@@ -12,16 +12,16 @@ const playlists = videos
     });
 
 playlists.then((playlist) => {
-    playlist.forEach(async (item) => {
+    playlist.forEach(async(item) => {
         await videos.getPlaylist(item.id, key).then((videos) => {
-            videos.forEach(async (video) => {
+            videos.forEach(async(video) => {
                 createVideo(video);
             });
         });
     });
 });
 
-const createVideo = async (video: VideoType) => {
+const createVideo = async(video: VideoType) => {
     const poster: string = await Base64Danko.fromImageUrlToBase64ToString(
         video.poster
     );

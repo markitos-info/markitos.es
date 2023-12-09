@@ -12,7 +12,7 @@ const endpoint = 'videos';
 export const endpointPlaylist = 'playlists';
 
 export const videos = {
-    getAll: async function () {
+    getAll: async function() {
         const collection = await instance.get(endpoint, {
             params: {},
         });
@@ -21,7 +21,7 @@ export const videos = {
 
         return result;
     },
-    getById: async function ({ id }: { id: string }) {
+    getById: async function({ id }: { id: string }) {
         const result = await instance.get(`${endpoint}/${id}`);
 
         result.data.result.description = decodeURI(
@@ -30,14 +30,14 @@ export const videos = {
 
         return result.data.result;
     },
-    getPlaylist: async function (id: string, key: string) {
+    getPlaylist: async function(id: string, key: string) {
         const response = await instanceYoutubePlaylistVideos.get(
             `playlistItems?playlistId=${id}&order=position&part=snippet&maxResults=100&key=${key}`
         );
 
         const allVideos: VideoType[] = [];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        response.data.items.forEach(async (item: any) => {
+        response.data.items.forEach(async(item: any) => {
             const url =
                 item.snippet.thumbnails.medium !== undefined
                     ? item.snippet.thumbnails.medium.url
@@ -60,7 +60,7 @@ export const videos = {
 
         return allVideos;
     },
-    getPlaylistIds: async function (channelId: string, key: string) {
+    getPlaylistIds: async function(channelId: string, key: string) {
         const playlists: VideoCommandListType[] = [];
         const responseList = await instanceYoutubePlaylistsIds.get(
             '/playlists',
@@ -74,7 +74,7 @@ export const videos = {
             }
         );
 
-        responseList.data.items.forEach(async (item) => {
+        responseList.data.items.forEach(async(item) => {
             const channel = item.snippet;
             const playlistId = item.id;
             playlists.push({
@@ -88,7 +88,7 @@ export const videos = {
         return playlists;
     },
 
-    getPlaylistVideos: async function (id: string) {
+    getPlaylistVideos: async function(id: string) {
         const response = await instance.get(`${endpointPlaylist}/${id}`);
         // response.data.result.sort((a, b) => {
         //   a.title.match(/^\d+/)[0] !== undefined &&
@@ -101,7 +101,7 @@ export const videos = {
 
         const allVideos: VideoType[] = [];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        response.data.result.forEach(async (item: any) => {
+        response.data.result.forEach(async(item: any) => {
             allVideos.push({
                 id: item.id,
                 playlist: item.playlist,
@@ -119,7 +119,7 @@ export const videos = {
         return allVideos;
     },
 
-    encode: async function (text: string) {
+    encode: async function(text: string) {
         return btoa(
             encodeURIComponent(text).replace(
                 /%([0-9A-F]{2})/g,

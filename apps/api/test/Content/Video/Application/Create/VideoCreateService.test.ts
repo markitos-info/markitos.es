@@ -18,20 +18,20 @@ const sut: VideoCreateService = VideoMother.VideoCreateService(
 );
 
 describe('VideoCreateService', () => {
-    it('shoud create a video', async () => {
+    it('shoud create a video', async() => {
         await sut.execute(request);
 
         expect(respository.createdCalled).toBeTruthy();
     });
 
-    it('shoud result a response with create video id', async () => {
+    it('shoud result a response with create video id', async() => {
         const result: VideoCreateReadModel = await sut.execute(
             VideoMother.VideoCreateRequest()
         );
         expect(result.id).toStrictEqual(SharedMother.VALID_ID);
     });
 
-    it('should throw a bad request on invalid id', async () => {
+    it('should throw a bad request on invalid id', async() => {
         try {
             await sut.execute(VideoMother.VideoCreateRequest('non-valid-id'));
         } catch (error) {

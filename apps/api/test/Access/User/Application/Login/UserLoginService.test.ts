@@ -12,7 +12,7 @@ const hasher: PasswordHasherForTest = new PasswordHasherForTest();
 const tokener: TokenatorForTest = new TokenatorForTest();
 
 describe('User Login Service', () => {
-    it('should login user', async () => {
+    it('should login user', async() => {
         const request: UserLoginRequest = UserMother.UserLoginRequest();
         const sut: UserLoginService = new UserLoginService(
             users,
@@ -26,7 +26,7 @@ describe('User Login Service', () => {
         expect(tokener.createCalled).toBeTruthy();
     });
 
-    it('shoud result a response with token jwt encode', async () => {
+    it('shoud result a response with token jwt encode', async() => {
         const request: UserLoginRequest = UserMother.UserLoginRequest();
 
         const sut: UserLoginService = new UserLoginService(
@@ -40,7 +40,7 @@ describe('User Login Service', () => {
         expect(token).not.toBeNull();
     });
 
-    it('should throw a bad request on invalid email', async () => {
+    it('should throw a bad request on invalid email', async() => {
         const request: UserLoginRequest =
             UserMother.UserLoginRequest('non-valid-email');
 

@@ -9,13 +9,13 @@ const request: VideoGetRequest = VideoMother.VideoGetRequest();
 const sut: VideoGetService = VideoMother.VideoGetService(respository);
 
 describe('VideoGetService', () => {
-    it('shoud get a video', async () => {
+    it('shoud get a video', async() => {
         await sut.execute(request);
 
         expect(respository.getCalled).toBeTruthy();
     });
 
-    it('shoud contain split tags as array from comma string from toPrimitives', async () => {
+    it('shoud contain split tags as array from comma string from toPrimitives', async() => {
         const response = await sut.execute(request);
 
         expect(response.tags_list).toStrictEqual(SharedMother.TAGS_VALUE);

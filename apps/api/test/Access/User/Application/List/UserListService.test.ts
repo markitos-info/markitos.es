@@ -9,7 +9,7 @@ const request: UserListRequest = UserMother.UserListRequest();
 const sut: UserListService = UserMother.UserListService(respository);
 
 describe('UserListService', () => {
-    it('shoud get a list response with a users collection', async () => {
+    it('shoud get a list response with a users collection', async() => {
         const result: UserListResponse = await sut.execute(request);
 
         expect(respository.listCalled).toBeTruthy();

@@ -18,7 +18,7 @@ const creator: UserRegisterService = UserMother.UserRegisterService(
 );
 
 describe('UserRepositoryMariaDB', () => {
-    it('shoud create a user', async () => {
+    it('shoud create a user', async() => {
         const id: string = uuidv4();
         const createRequest: UserRegisterRequest =
             UserMother.UserRegisterRequest(
@@ -27,13 +27,13 @@ describe('UserRepositoryMariaDB', () => {
                 faker.internet.email()
             );
 
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
             await sut.delete(new Id(createRequest.id));
         }).not.toThrow();
     });
 
-    it('shoud get an existing user', async () => {
+    it('shoud get an existing user', async() => {
         const id: string = uuidv4();
         const createRequest: UserRegisterRequest =
             UserMother.UserRegisterRequest(
@@ -50,7 +50,7 @@ describe('UserRepositoryMariaDB', () => {
         await sut.delete(new Id(id));
     });
 
-    it('shoud delete an existing user', async () => {
+    it('shoud delete an existing user', async() => {
         const id: string = uuidv4();
         const createRequest: UserRegisterRequest =
             UserMother.UserRegisterRequest(
@@ -70,7 +70,7 @@ describe('UserRepositoryMariaDB', () => {
     });
 
     it('shoud list users without pattern', () => {
-        expect(async () => {
+        expect(async() => {
             const createRequest1: UserRegisterRequest =
                 UserMother.UserRegisterRequest(
                     uuidv4(),
@@ -102,7 +102,7 @@ describe('UserRepositoryMariaDB', () => {
         const prefixToSearch: string =
             Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-        expect(async () => {
+        expect(async() => {
             const createRequest1: UserRegisterRequest =
                 UserMother.UserRegisterRequest(
                     uuidv4(),

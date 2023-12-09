@@ -12,7 +12,7 @@ const users: UserRepositoryForTest = new UserRepositoryForTest();
 const hasher: PasswordHasherForTest = new PasswordHasherForTest();
 
 describe('User Register Service', () => {
-    it('should create user', async () => {
+    it('should create user', async() => {
         const request: UserRegisterRequest = UserMother.UserRegisterRequest();
 
         const sut: UserRegisterService = new UserRegisterService(
@@ -27,7 +27,7 @@ describe('User Register Service', () => {
         hasher.reset();
     });
 
-    it('shoud result a response with create id', async () => {
+    it('shoud result a response with create id', async() => {
         const request: UserRegisterRequest = UserMother.UserRegisterRequest();
 
         const sut: UserRegisterService = new UserRegisterService(users, hasher);
@@ -36,7 +36,7 @@ describe('User Register Service', () => {
         expect(result.id).toStrictEqual(SharedMother.VALID_ID);
     });
 
-    it('should throw a bad request on invalid id', async () => {
+    it('should throw a bad request on invalid id', async() => {
         const request: UserRegisterRequest =
             UserMother.UserRegisterRequest('non-valid-id');
 

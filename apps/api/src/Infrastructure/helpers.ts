@@ -13,7 +13,7 @@ export const getPosterUrl = (req: Request, videoId: string): string => {
     ).toString();
 };
 
-export const processVideo = async (
+export const processVideo = async(
     req: Request,
     video: VideoType
 ): Promise<VideoType> => {

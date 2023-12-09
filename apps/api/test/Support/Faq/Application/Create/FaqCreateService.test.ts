@@ -10,13 +10,13 @@ const request: FaqCreateRequest = FaqMother.FaqCreateRequest();
 const sut: FaqCreateService = FaqMother.FaqCreateService(respository);
 
 describe('FaqCreateService', () => {
-    it('shoud create a faq', async () => {
+    it('shoud create a faq', async() => {
         await sut.execute(request);
 
         expect(respository.createdCalled).toBeTruthy();
     });
 
-    it('shoud result a response with create faq id', async () => {
+    it('shoud result a response with create faq id', async() => {
         const result: FaqCreateResponse = await sut.execute(request);
 
         expect(result.id).toStrictEqual(SharedMother.VALID_ID);

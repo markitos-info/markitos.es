@@ -8,7 +8,7 @@ const request: VideoDeleteRequest = VideoMother.VideoDeleteRequest();
 const sut: VideoDeleteService = VideoMother.VideoDeleteService(respository);
 
 describe('VideoDeleteService', () => {
-    it('shoud delete a video', async () => {
+    it('shoud delete a video', async() => {
         await sut.execute(request);
 
         expect(respository.deletedCalled).toBeTruthy();

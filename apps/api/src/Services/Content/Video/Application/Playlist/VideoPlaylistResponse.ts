@@ -8,7 +8,7 @@ class VideoPlaylistResponse implements ToPrimitiveTypeResult {
     toPrimitives(): VideoType[] {
         const result: VideoType[] = [];
 
-        this.playlist.forEach(async (item: Video) => {
+        this.playlist.forEach(async(item: Video) => {
             result.push(await item.toPrimitives());
         });
 

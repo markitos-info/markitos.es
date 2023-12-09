@@ -6,7 +6,7 @@ import { SharedMother } from '../../SharedMother';
 const sut: PasswordHasher = new PasswordHasherBcrypt();
 
 describe('PasswordHasherBCrypt', () => {
-    it('shoud hash a plain text', async () => {
+    it('shoud hash a plain text', async() => {
         const plain: string = SharedMother.HELLO_WORLD_LITERAL;
 
         const hashed: string = await sut.hash(plain);
@@ -14,7 +14,7 @@ describe('PasswordHasherBCrypt', () => {
         expect(hashed.length > plain.length).toBeTruthy();
     });
 
-    it('shoud compare plain text with previous hashed text', async () => {
+    it('shoud compare plain text with previous hashed text', async() => {
         const plain: string = uuidv4();
         const hashed: string = await sut.hash(plain);
 
@@ -23,7 +23,7 @@ describe('PasswordHasherBCrypt', () => {
         expect(isEquals).toBeTruthy();
     });
 
-    it('shoud compare other plain text with previous hashed text', async () => {
+    it('shoud compare other plain text with previous hashed text', async() => {
         const plain: string = uuidv4();
         const plainBadToCompare: string = uuidv4();
         const hashed: string = await sut.hash(plain);

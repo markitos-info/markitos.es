@@ -8,7 +8,7 @@ const request: FaqDeleteRequest = FaqMother.FaqDeleteRequest();
 const sut: FaqDeleteService = FaqMother.FaqDeleteService(respository);
 
 describe('FaqDeleteService', () => {
-    it('shoud delete a faq', async () => {
+    it('shoud delete a faq', async() => {
         await sut.execute(request);
 
         expect(respository.deletedCalled).toBeTruthy();

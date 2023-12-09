@@ -5,7 +5,7 @@ import { SharedMother } from '../../SharedMother';
 const sut: Tokenator = new TokenatorJWT();
 
 describe('TokenatorJWT', () => {
-    it('shoud create jwt token', async () => {
+    it('shoud create jwt token', async() => {
         const token = await sut.create(SharedMother.TOKEN_PAYLOAD, 9999);
 
         const decoded = await sut.decode(token);

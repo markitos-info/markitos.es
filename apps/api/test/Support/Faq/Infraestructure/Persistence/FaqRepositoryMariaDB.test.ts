@@ -14,7 +14,7 @@ const createRequest: FaqCreateRequest = FaqMother.FaqCreateRequest();
 
 describe('FaqCreateService', () => {
     it('shoud create a faq', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             await faqs.delete(new Id(createRequest.id));
@@ -22,7 +22,7 @@ describe('FaqCreateService', () => {
     });
 
     it('shoud get an existing faq', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
 
             const faq: Faq = await faqs.get(new Id(createRequest.id));
@@ -34,7 +34,7 @@ describe('FaqCreateService', () => {
     });
 
     it('shoud delete an existing faq', () => {
-        async () => {
+        async() => {
             await creator.execute(createRequest);
             await faqs.delete(new Id(createRequest.id));
 
@@ -47,7 +47,7 @@ describe('FaqCreateService', () => {
     });
 
     it('shoud list faqs without pattern', () => {
-        expect(async () => {
+        expect(async() => {
             await creator.execute(createRequest);
             await creator.execute(
                 FaqMother.FaqCreateRequest(SharedMother.VALID_ID_2)
@@ -70,7 +70,7 @@ describe('FaqCreateService', () => {
         const prefixToSearch: string =
             Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-        expect(async () => {
+        expect(async() => {
             await creator.execute(
                 FaqMother.FaqCreateRequest(SharedMother.VALID_ID)
             );

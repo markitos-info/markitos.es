@@ -9,7 +9,7 @@ const request: VideoPlaylistRequest = VideoMother.VideoPlaylistRequest();
 const sut: VideoPlaylistService = VideoMother.VideoPlaylistService(respository);
 
 describe('VideoPlaylistService', () => {
-    it('shoud get a playlist response with a videos collection', async () => {
+    it('shoud get a playlist response with a videos collection', async() => {
         const result: VideoType[] = await sut.execute(request);
 
         expect(respository.playlistCalled).toBeTruthy();
