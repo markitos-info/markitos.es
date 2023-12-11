@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { videos } from "../../api/videos";
 import VideoCardComponent from "../../components/VideoCard.tsx";
 import { VideoType } from "../../types/VideoType";
@@ -17,6 +17,7 @@ const PlaylistPage: React.FC = () => {
   const { id } = useParams();
   const [loading, setLoading] = React.useState<boolean>(true);
   const [playVideos, setPlayVideos] = React.useState<VideoType[] | []>([]);
+  const location = useLocation();
 
   React.useEffect(() => {
     setLoading(true);
@@ -27,7 +28,7 @@ const PlaylistPage: React.FC = () => {
       },
       (err) => {
         console.error(err);
-      },
+      }
     );
   }, [id]);
 
@@ -43,8 +44,8 @@ const PlaylistPage: React.FC = () => {
             {playVideos!.length !== 0 ? (
               <>
                 <HeaderComponent
-                  title="Cultura Devop"
-                  description="el camino del test"
+                  title=""
+                  description={location.state.playlistTitle}
                 />
                 <Grid sx={{ my: 2 }} container spacing={2} direction="row">
                   {playVideos!.map((video) => (
