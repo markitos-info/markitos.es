@@ -28,7 +28,7 @@ const PlaylistPage: React.FC = () => {
       },
       (err) => {
         console.error(err);
-      }
+      },
     );
   }, [id]);
 
