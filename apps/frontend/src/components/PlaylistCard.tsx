@@ -56,7 +56,8 @@ const PlaylistCardComponent: React.FC<CardProps> = ({
           title={`total ${count}`}
           sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
         />
-        <CardContent>slac
+        <CardContent>
+          slac
           <Typography variant="button" sx={{ mb: 1.5 }}>
             {title}
           </Typography>
