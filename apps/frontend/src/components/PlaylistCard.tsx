@@ -38,7 +38,13 @@ const PlaylistCardComponent: React.FC<CardProps> = ({
         flexDirection: "column",
         justifyContent: "space-between",
       }}
-      onClick={() => navigate(`${endpointPlaylist}/${id}`)}
+      onClick={() =>
+        navigate(`${endpointPlaylist}/${id}`, {
+          state: {
+            playlistTitle: title,
+          },
+        })
+      }
     >
       <CardActionArea>
         <CardMedia
@@ -50,7 +56,7 @@ const PlaylistCardComponent: React.FC<CardProps> = ({
           title={`total ${count}`}
           sx={{ padding: "1em 1em 0 1em", objectFit: "contain" }}
         />
-        <CardContent>
+        <CardContent>slac
           <Typography variant="button" sx={{ mb: 1.5 }}>
             {title}
           </Typography>
@@ -67,7 +73,13 @@ const PlaylistCardComponent: React.FC<CardProps> = ({
           sx={{ mr: 1 }}
           fullWidth
           variant="contained"
-          onClick={() => navigate(`${endpointPlaylist}/${id}`)}
+          onClick={() =>
+            navigate(`${endpointPlaylist}/${id}`, {
+              state: {
+                playlistTitle: title,
+              },
+            })
+          }
         >
           ver
         </Button>

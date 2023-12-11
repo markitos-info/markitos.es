@@ -21,7 +21,7 @@ export const HomePage: React.FC<object> = () => {
   const list = async () => {
     const collection: ListType[] = await videos.getPlaylistsFromChannel(
       "UCke07ha3WRqu_6-e3ToIfVQ",
-      key,
+      key
     );
 
     const lists: ListType[] = [];
@@ -38,8 +38,6 @@ export const HomePage: React.FC<object> = () => {
     return lists;
   };
 
-  console.log(localStorage.getItem("token"));
-
   React.useEffect(() => {
     setLoading(true);
     list()
@@ -54,7 +52,7 @@ export const HomePage: React.FC<object> = () => {
 
   return (
     <Container maxWidth="xl">
-      <HeaderComponent title="playlists" description="videos" />
+      <HeaderComponent title="" description="videos" />
       {loading ? (
         <Box sx={{ display: "flex", justifyContent: "center", mt: 2 }}>
           <CircularProgress />
