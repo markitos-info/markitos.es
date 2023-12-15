@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ../../apps/api
+      dockerfile: ../../cloud/dockerhub/Dockerfile.api
+
+  frontend:
+    build:
+      context: ../../apps/frontend
+      dockerfile: ../../cloud/dockerhub/Dockerfile.frontend
+
+  database:
+    build:
+      context: ../../docker/mariadb
+      dockerfile: ../../cloud/dockerhub/Dockerfile.mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+  ssh-agent:
+    image: jenkins/ssh-agent
+
+volumes:
+  mariadb_data:
+  jenkins_home:
