@@ -2,7 +2,7 @@ FROM mariadb:10.1
 
 RUN pwd
 ENV MYSQL_USER root
-ENV MYSQL_ROOT_PASSWORD root
+ENV MYSQL_ROOT_PASSWORD alatrist3DSG18j
 ENV MYSQL_DATABASE markitos
 
 # Restore sql dump file

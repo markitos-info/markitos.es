@@ -12,7 +12,6 @@ import { videos } from "../../api/videos";
 import HeaderComponent from "../../components/Header";
 import PlaylistCardComponent from "../../components/PlaylistCard";
 import { ListType } from "../../types/ListType";
-import { store } from "../../redux/store.ts";
 
 export const HomePage: React.FC<object> = () => {
   const [allChannels, setAllChannels] = React.useState<ListType[] | null>(null);
@@ -21,7 +20,7 @@ export const HomePage: React.FC<object> = () => {
   const list = async () => {
     const collection: ListType[] = await videos.getPlaylistsFromChannel(
       "UCke07ha3WRqu_6-e3ToIfVQ",
-      key,
+      key
     );
 
     const lists: ListType[] = [];

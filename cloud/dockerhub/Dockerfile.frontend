@@ -18,5 +18,3 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 5173
 CMD ["pm2-runtime", "ecosystem.config.cjs", "--env", "production"]
-
-# CMD ["node", "dist/src/start.js"]

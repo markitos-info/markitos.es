@@ -13,7 +13,6 @@ import { useNotification } from "../../context/notification.context";
 import { LoginValidate } from "../../helpers/validateForm";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/base.api";
-import { store } from "../../redux/store";
 
 type LoginType = {
   username: string;
