@@ -4,19 +4,11 @@ import NotFoundException from '../../../../Shared/Domain/Exception/NotFoundExcep
 import CommaTags from '../../../../Shared/Domain/ValueObject/CommaTags';
 import Id from '../../../../Shared/Domain/ValueObject/Id';
 import Title from '../../../../Shared/Domain/ValueObject/Title';
+import { pool } from '../../../../Shared/Infraestructure/PollMariaDB';
 import Faq from '../../Domain/Model/Faq';
 import FaqType from '../../Domain/Model/FaqType';
 import FaqRepository from '../../Domain/Persistence/FaqRepository';
 import Solution from '../../Domain/ValueObject/Solution';
-
-const pool = mariadb.createPool({
-    host: 'mariadb',
-    port: 3306,
-    database: 'markitos',
-    user: 'markitos',
-    password: 'markitos',
-    connectionLimit: 5,
-});
 
 class FaqRepositoryMariaDB implements FaqRepository {
     async create(faq: Faq): Promise<void> {

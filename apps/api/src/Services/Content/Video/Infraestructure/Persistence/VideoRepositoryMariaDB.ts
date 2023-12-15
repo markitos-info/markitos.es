@@ -7,19 +7,11 @@ import Id from '../../../../Shared/Domain/ValueObject/Id';
 import Poster from '../../../../Shared/Domain/ValueObject/Poster';
 import Title from '../../../../Shared/Domain/ValueObject/Title';
 import Youtube from '../../../../Shared/Domain/ValueObject/Youtube';
+import { pool } from '../../../../Shared/Infraestructure/PollMariaDB';
 import Video from '../../Domain/Model/Video';
 import VideoType from '../../Domain/Model/VideoType';
 import VideoRepository from '../../Domain/Persistence/VideoRepository';
 import PlaylistId from '../../Domain/ValueObject/PlaylistId';
-
-const pool = mariadb.createPool({
-    host: 'mariadb',
-    port: 3306,
-    database: 'markitos',
-    user: 'markitos',
-    password: 'markitos',
-    connectionLimit: 5,
-});
 
 class VideoRepositoryMariaDB implements VideoRepository {
     async create(video: Video): Promise<void> {

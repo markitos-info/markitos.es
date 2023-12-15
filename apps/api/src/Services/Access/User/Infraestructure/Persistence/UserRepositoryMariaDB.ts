@@ -5,18 +5,10 @@ import Email from '../../../../Shared/Domain/ValueObject/Email';
 import Id from '../../../../Shared/Domain/ValueObject/Id';
 import Name from '../../../../Shared/Domain/ValueObject/Name';
 import Password from '../../../../Shared/Domain/ValueObject/Password';
+import { pool } from '../../../../Shared/Infraestructure/PollMariaDB';
 import User from '../../Domain/Model/User';
 import UserType from '../../Domain/Model/UserType';
 import UserRepository from '../../Domain/Persistence/UserRepository';
-
-const pool = mariadb.createPool({
-    host: 'mariadb',
-    port: 3306,
-    database: 'markitos',
-    user: 'markitos',
-    password: 'markitos',
-    connectionLimit: 5,
-});
 
 class UserRepositoryMariaDB implements UserRepository {
     async register(user: User): Promise<void> {
