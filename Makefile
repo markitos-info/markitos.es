@@ -32,6 +32,9 @@ lint:
 
 #:{.".}:>----------------------------------------
 #:{.".}:>----- startof.docker.images ------------
+#:{.".}:>----- use:
+#:{.".}:>----- TAG=0.0.1 make cloud.docker.plan
+#:{.".}:>----- TAG=0.0.1 make cloud.docker.push
 #:{.".}:>----------------------------------------
 cloud.docker.init:
 	cd cloud/dockerhub && terraform init
