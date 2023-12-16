@@ -20,7 +20,7 @@ export const HomePage: React.FC<object> = () => {
   const list = async () => {
     const collection: ListType[] = await videos.getPlaylistsFromChannel(
       "UCke07ha3WRqu_6-e3ToIfVQ",
-      key
+      key,
     );
 
     const lists: ListType[] = [];

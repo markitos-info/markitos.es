@@ -5,6 +5,8 @@ GRANT ALL PRIVILEGES ON `markitos`.* TO `markitos` @localhost IDENTIFIED BY 'mar
 GRANT ALL PRIVILEGES ON `markitos`.* TO `markitos` @'%' IDENTIFIED BY 'markitos' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
+FLUSH PRIVILEGES;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 use `markitos`;
@@ -79,6 +81,17 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='users';
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES ('f5b4549e-bce9-4027-86ec-9da4e248d947','2023-12-16 16:26:37','markitos@markitos.com','markitos','$2b$10$8g.U.roV5JHwx11EAJ4Hj.CrU5duVF8CU0bMfE3ppPaQKSxr7/ZT.');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 --
 -- Table structure for table `videos`

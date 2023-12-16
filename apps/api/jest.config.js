@@ -21,9 +21,6 @@ module.exports = {
             statements: 100
         }
     },
-    setupFilesAfterEnv: [
-        '<rootDir>/test/setup.ts'
-    ],
     testMatch: [
         '<rootDir>/test/**/*.test.{js,jsx,ts,tsx}'
     ]

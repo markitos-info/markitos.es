@@ -13,11 +13,11 @@ services:
       dockerfile: ../../cloud/dockerhub/Dockerfile.api
     image: culturadevop.api:0.0.1
     environment:
-      - CDN_DIR=/cdn/
+      - CDN_DIR=cdn/
       - DB_USERNAME=markitos
       - DB_PASSWORD=markitos
       - DB_DATABASE=markitos
-      - DB_HOSTNAME=172.27.27.3
+      - DB_HOSTNAME=culturadevop.mariadb
       - DB_HOSTPORT=3306
       - MY_DOMAIN=culturadevop.com
     restart: always
@@ -34,6 +34,9 @@ services:
     build:
       context: ../../apps/frontend
       dockerfile: ../../cloud/dockerhub/Dockerfile.frontend
+    image: culturadevop.frontend:0.0.1
+    environment:
+      - VITE_API_ENDPOINT=http://culturadevop.com:3000/api/v1
     ports:
       - 80:5173
     hostname: culturadevop.frontend
@@ -47,6 +50,12 @@ services:
     build:
       context: ../../docker/mariadb
       dockerfile: ../../cloud/dockerhub/Dockerfile.mariadb
+    image: culturadevop.mariadb:0.0.1
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=markitos
+      - MYSQL_USER=markitos
+      - MYSQL_PASSWORD=markitos
     volumes:
       - mariadb_data:/var/lib/mysql
     hostname: culturadevop.mariadb

@@ -1,56 +1,81 @@
-version: '3.3'
+version: "3.3"
 #----------------------------------------------------------
-# definicion de la red y rango de ips 
+# definicion de la red y rango de ips
 #
 # markitos project
 #----------------------------------------------------------
 networks:
-    markitos-apps-network:
-        ipam:
-            config:
-                - subnet: 172.27.10.0/24
+  markitos-apps-network:
+    ipam:
+      config:
+        - subnet: 172.27.10.0/24
 services:
-    markitos.api:
-        user: "1000:1000"
-        build: api
-        container_name: 'markitos.api'
-        restart: always
-        ports:
-            - 3000:3000
-        volumes:
-            - ../apps/api/:/var/www/vhosts/markitos/
-        extra_hosts:
-            - 'mariadb:172.27.10.12'
-        hostname: markitos.api
-        networks:
-            markitos-apps-network:
-                ipv4_address: 172.27.10.14
+  markitos.api:
+    user: "1000:1000"
+    build:
+      context: ../apps/api/
+      dockerfile: ../../docker/api/Dockerfile
+    container_name: "markitos.api"
+    image: "markitos.api.dev"
+    restart: always
+    environment:
+      - APP_PORT=3000
+      - JWT_PRIVATE_KEY=e8277c1b-e124-4e74-a186-5572cde24585
+      - CDN_DIR=cdn/
+      - DB_USERNAME=markitos
+      - DB_PASSWORD=markitos
+      - DB_DATABASE=markitos
+      - DB_HOSTNAME=markitos.mariadb
+      - DB_HOSTPORT=3306
+      - MY_DOMAIN=localhost
+    ports:
+      - 3000:3000
+    # volumes:
+    #   - ../apps/api/:/var/www/vhosts/markitos/
+    extra_hosts:
+      - "mariadb:172.27.10.12"
+    hostname: markitos.api
+    networks:
+      markitos-apps-network:
+        ipv4_address: 172.27.10.14
 
-    markitos.frontend:
-        user: "1000:1000"
-        build: frontend
-        container_name: "markitos.frontend"
-        restart: always
-        ports:
-            - 5173:5173
-        volumes:
-            - ../apps/frontend/:/var/www/vhosts/markitos/
-        hostname: markitos.frontend
-        extra_hosts:
-            - 'markitos.api:172.27.10.14'
-        networks:
-            markitos-apps-network:
-                ipv4_address: 172.27.10.13
+  markitos.frontend:
+    user: "1000:1000"
+    build: frontend
+    container_name: "markitos.frontend"
+    image: "markitos.frontend.dev"
+    restart: always
+    environment:
+      - VITE_API_ENDPOINT=http://localhost:3000/api/v1
+    ports:
+      - 5173:5173
+    volumes:
+      - ../apps/frontend/:/var/www/vhosts/markitos/
+    hostname: markitos.frontend
+    extra_hosts:
+      - "markitos.api:172.27.10.14"
+    networks:
+      markitos-apps-network:
+        ipv4_address: 172.27.10.13
 
-    markitos.mariadb:
-        build: mariadb
-        container_name: 'markitos.mariadb'
-        ports:
-            - 3306:3306
-        volumes:
-            - /var/lib/mysql
-        restart: always
-        hostname: markitos.mariadb
-        networks:
-            markitos-apps-network:
-                ipv4_address: 172.27.10.12
+  markitos.mariadb:
+    build: mariadb
+    volumes:
+      - markitos_mariadb_dev_data:/var/lib/mysql
+    container_name: "markitos.mariadb"
+    image: "markitos.mariadb.dev"
+    ports:
+      - 3306:3306
+    restart: always
+    hostname: markitos.mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=markitos
+      - MYSQL_USER=markitos
+      - MYSQL_PASSWORD=markitos
+    networks:
+      markitos-apps-network:
+        ipv4_address: 172.27.10.12
+
+volumes:
+  markitos_mariadb_dev_data:

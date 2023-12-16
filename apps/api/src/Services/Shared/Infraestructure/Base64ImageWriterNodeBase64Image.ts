@@ -9,6 +9,7 @@ class Base64ImageWriterNodeBase64Image implements Base64ImageWriter {
         try {
             const imageName = randomUUID();
             const imageFullPath = `${cdnDir}${imageName}`;
+            
             await decode(encode, {
                 fname: imageFullPath,
                 ext: extension,

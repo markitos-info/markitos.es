@@ -4,7 +4,7 @@
   "description": "markitos ts api",
   "scripts": {
     "build": "tsc",
-    "dev": "NODE_ENV=dev ts-node-dev --inspect --ignore-watch node_modules ./src/start.ts",
+    "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/start.ts",
     "start": "npm run build && node ./dist/src/start.js",
     "test": "NODE_ENV=dev jest --runInBand --detectOpenHandles --forceExit --watchAll",
     "clean": "rm -r ./dist; exit 0",
@@ -14,7 +14,6 @@
   "author": "Marco Antonio <marcokitos.info@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@cucumber/cucumber": "^10.0.1",
     "@faker-js/faker": "8.3.1",
     "@types/axios": "0.14.0",
     "@types/bcrypt": "5.0.2",
@@ -24,7 +23,6 @@
     "@types/cookie-parser": "1.4.3",
     "@types/cookie-session": "2.0.44",
     "@types/cors": "2.8.16",
-    "@types/cucumber": "7.0.0",
     "@types/errorhandler": "1.5.0",
     "@types/express": "4.17.15",
     "@types/faker": "6.6.9",
@@ -35,7 +33,6 @@
     "@types/supertest": "2.0.12",
     "@types/uuid": "9.0.7",
     "@typescript-eslint/eslint-plugin": "6.8.0",
-    "cucumber-pretty": "6.0.1",
     "eslint": "8.52.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-config-standard": "17.1.0",

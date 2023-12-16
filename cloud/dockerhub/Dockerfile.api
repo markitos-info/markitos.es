@@ -1,6 +1,6 @@
 FROM node:20-alpine as dependencies
 WORKDIR /app
-COPY package.json package-lock.json ecosystem.config.js ./
+COPY package*.json ecosystem.config.js ./
 RUN npm install -g npm@10.2.5 && npm install
 
 FROM node:20-alpine as builder
@@ -11,7 +11,7 @@ RUN npm run build
 
 FROM node:20-alpine as runner
 WORKDIR /app
-COPY package.json package-lock.json ecosystem.config.js  ./
+COPY package*.json ecosystem.config.js  ./
 RUN npm install pm2 -g
 RUN npm install --omit=dev
 COPY --from=builder /app/dist ./dist

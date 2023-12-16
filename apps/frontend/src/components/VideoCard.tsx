@@ -47,7 +47,7 @@ const VideoCardComponent: React.FC<CardProps> = (prosp: CardProps) => {
         title: prosp.video.title,
         poster: prosp.video.poster,
         url: `/playlists/${prosp.video.playlist}/videos/${prosp.video.id}`,
-      })
+      }),
     );
   };
 
@@ -64,7 +64,7 @@ const VideoCardComponent: React.FC<CardProps> = (prosp: CardProps) => {
       <CardActionArea
         onClick={() =>
           navigate(
-            `/playlists/${prosp.video.playlist}/videos/${prosp.video.id}`
+            `/playlists/${prosp.video.playlist}/videos/${prosp.video.id}`,
           )
         }
       >
@@ -101,7 +101,7 @@ const VideoCardComponent: React.FC<CardProps> = (prosp: CardProps) => {
           sx={{ width: "100px" }}
           onClick={() =>
             navigate(
-              `/playlists/${prosp.video.playlist}/videos/${prosp.video.id}`
+              `/playlists/${prosp.video.playlist}/videos/${prosp.video.id}`,
             )
           }
         >

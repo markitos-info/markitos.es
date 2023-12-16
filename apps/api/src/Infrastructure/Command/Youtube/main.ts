@@ -3,8 +3,6 @@ import Base64Danko from '../../../Services/Shared/Infraestructure/Base64ToolDank
 import { instance, key } from './base.api';
 import { videos } from './videos';
 
-process.env.CDN_DIR = 'cdn';
-
 const playlists = videos
     .getPlaylistIds('UCke07ha3WRqu_6-e3ToIfVQ', key)
     .then((data) => {
