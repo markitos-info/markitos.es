@@ -1,22 +1,14 @@
 module.exports = {
   apps: [
     {
-      //Configuramos el nombre del proceso que tendrá mi aplicación
-      name: "markitos.es.api",
-      //Difinimos el script que vamos a ejecutar
-      script: "dist/src/start.js",
-      // Options reference: https://pm2.io/doc/en/runtime/reference/ecosystem-file/
+      name: "culturadevop.api",
+      script: "dist/start.js",
       instances: 1,
       autorestart: true,
-      watch: true,
+      watch: false,
       max_memory_restart: "1G",
-      //Definimos las variables de entorno de mis ambientes
       env: {
-        NODE_ENV: "development"
-      },
-      env_production: {
-        NODE_ENV: "production",
-        PORT: 3000
+        NODE_ENV: "production"
       }
     }
   ]

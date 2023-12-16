@@ -1,10 +1,13 @@
 node_modules
 apps/**/node_modules/
 apps/**/.env
+apps/**/.env.*
 apps/api/cdn/*.jpg
 apps/**/*.jpg
 .env
 **/.env
+.env.*
+**/.env.*
 .DS_Store
 **/.DS_Store
 

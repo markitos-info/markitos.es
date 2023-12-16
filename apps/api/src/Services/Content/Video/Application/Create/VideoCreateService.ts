@@ -20,8 +20,8 @@ class VideoCreateService {
 
     async execute(request: VideoCreateRequest): Promise<VideoCreateReadModel> {
         request.poster = await this.imagener.write(request.poster);
-
         const video: Video = this.createVideoFromRequest(request);
+
         await this.repository.create(video);
 
         return new VideoCreateResponse(

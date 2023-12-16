@@ -1,32 +1,75 @@
 version: "3.8"
 
+networks:
+  culturadevop-network:
+    ipam:
+      config:
+        - subnet: 172.27.27.0/24
+
 services:
-  backend:
+  culturadevop.api:
     build:
       context: ../../apps/api
       dockerfile: ../../cloud/dockerhub/Dockerfile.api
+    image: culturadevop.api:0.0.1
+    environment:
+      - CDN_DIR=/cdn/
+      - DB_USERNAME=markitos
+      - DB_PASSWORD=markitos
+      - DB_DATABASE=markitos
+      - DB_HOSTNAME=172.27.27.3
+      - DB_HOSTPORT=3306
+      - MY_DOMAIN=culturadevop.com
+    restart: always
+    ports:
+      - 3000:3000
+    hostname: culturadevop.api
+    extra_hosts:
+      - "culturadevop.mariadb:172.27.27.3"
+    networks:
+      culturadevop-network:
+        ipv4_address: 172.27.27.10
 
-  frontend:
+  culturadevop.frontend:
     build:
       context: ../../apps/frontend
       dockerfile: ../../cloud/dockerhub/Dockerfile.frontend
+    ports:
+      - 80:5173
+    hostname: culturadevop.frontend
+    extra_hosts:
+      - "culturadevop.api:172.27.27.10"
+    networks:
+      culturadevop-network:
+        ipv4_address: 172.27.27.2
 
-  database:
+  culturadevop.mariadb:
     build:
       context: ../../docker/mariadb
       dockerfile: ../../cloud/dockerhub/Dockerfile.mariadb
     volumes:
       - mariadb_data:/var/lib/mysql
+    hostname: culturadevop.mariadb
+    ports:
+      - 3306:3306
+    networks:
+      culturadevop-network:
+        ipv4_address: 172.27.27.3
 
-  jenkins:
+  culturadevop.jenkins:
     image: jenkins/jenkins:lts
     ports:
-      - "8080:8080"
+      - "8888:8080"
     volumes:
       - jenkins_home:/var/jenkins_home
-
-  ssh-agent:
-    image: jenkins/ssh-agent
+    hostname: culturadevop.jenkins
+    extra_hosts:
+      - "culturadevop.api:172.27.27.10"
+      - "culturadevop.frontend:172.27.27.2"
+      - "culturadevop.mariadb:172.27.27.3"
+    networks:
+      culturadevop-network:
+        ipv4_address: 172.27.27.4
 
 volumes:
   mariadb_data:

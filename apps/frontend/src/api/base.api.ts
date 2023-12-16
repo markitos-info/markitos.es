@@ -3,7 +3,7 @@ import axios from "axios";
 export const BASE_URL_DEVELOPMENT: string = "http://localhost:3000/api/v1";
 export const BASE_URL_PRODUCTION: string =
   "http://culturadevop.com:3000/api/v1";
-export const BASE_URL: string = BASE_URL_PRODUCTION;
+export const BASE_URL: string = BASE_URL_DEVELOPMENT;
 
 export const key = "AIzaSyAhLpY7NN4NXVyEmvQ9p6NV64_wr2Q5Rj8";
 export const tags =

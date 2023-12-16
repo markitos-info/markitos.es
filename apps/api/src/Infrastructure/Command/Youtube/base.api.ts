@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const BASE_URL: string = 'http://markitos.api:3000/api/v1';
+export const BASE_URL: string = 'http://localhost:3000/api/v1';
 export const key = 'AIzaSyAhLpY7NN4NXVyEmvQ9p6NV64_wr2Q5Rj8';
 export const tags =
     'aws,devop,azure,typescript,cloud,kubernetes,docker,ansible,golang,go';
