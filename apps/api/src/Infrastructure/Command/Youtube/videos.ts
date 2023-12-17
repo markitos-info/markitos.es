@@ -30,9 +30,9 @@ export const videos = {
 
         return result.data.result;
     },
-    getPlaylist: async function(id: string, key: string) {
+    getPlaylist: async function(playlist: VideoCommandListType, key: string) {
         const response = await instanceYoutubePlaylistVideos.get(
-            `playlistItems?playlistId=${id}&order=position&part=snippet&maxResults=100&key=${key}`
+            `playlistItems?playlistId=${playlist.id}&order=position&part=snippet&maxResults=100&key=${key}`
         );
 
         const allVideos: VideoType[] = [];
@@ -45,6 +45,7 @@ export const videos = {
             allVideos.push({
                 id: item.id,
                 playlist: item.snippet.playlistId,
+                playlistTitle: playlist.title,
                 title: item.snippet.title,
                 description: item.snippet.description,
                 poster: url,
@@ -86,37 +87,6 @@ export const videos = {
         });
 
         return playlists;
-    },
-
-    getPlaylistVideos: async function(id: string) {
-        const response = await instance.get(`${endpointPlaylist}/${id}`);
-        // response.data.result.sort((a, b) => {
-        //   a.title.match(/^\d+/)[0] !== undefined &&
-        //   a.title.match(/^\d+/)[0] == b.title.match(/^\d+/)[0] + 1
-        //     ? 1
-        //     : b.title.match(/^\d+/)[0] > a.title.match(/^\d+/)[0] - 1
-        //       ? -1
-        //       : 0;
-        // });
-
-        const allVideos: VideoType[] = [];
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        response.data.result.forEach(async(item: any) => {
-            allVideos.push({
-                id: item.id,
-                playlist: item.playlist,
-                title: item.title,
-                description: item.description,
-                poster: item.poster,
-                createdAt: item.publishedAt,
-                tags: tags,
-                tags_list: tags_list,
-                url: item.url,
-                position: item.position,
-            });
-        });
-
-        return allVideos;
     },
 
     encode: async function(text: string) {

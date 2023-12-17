@@ -23,6 +23,7 @@ class RequestSubscriber implements EventSubscriberInterface
 
         $session = $event->getRequest()->getSession();
         $sessionTimeout = $session->get('token_timeout', null);
+        $sessionToken = $session->get('token', null);
         if (is_null($sessionTimeout)) {
             $event->setResponse(new RedirectResponse('/login'));
 

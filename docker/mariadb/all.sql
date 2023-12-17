@@ -109,7 +109,8 @@ CREATE TABLE `videos` (
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `poster` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `playlist` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Primary Key Playlist Optional',
-  `position` TINYINT UNSIGNED DEFAULT 0 COMMENT 'Pposition in Playlist Optional',
+  `playlistTitle` VARCHAR(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'Playlist Title Optional',
+  `position` TINYINT UNSIGNED DEFAULT 0 COMMENT 'Position in Playlist Optional',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='videos';
 /*!40101 SET character_set_client = @saved_cs_client */;

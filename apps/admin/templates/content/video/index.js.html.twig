@@ -1,0 +1,57 @@
+<script>
+
+    function b64DecodeUnicode(str) { // Going backwards: from bytestream, to percent-encoding, to original string.
+        return decodeURIComponent(atob(str).split('').map(function (c) {
+            return '%' + (
+                '00' + c.charCodeAt(0).toString(16)
+            ).slice(-2);
+        }).join(''));
+    }
+
+
+    $(function () {
+        $('.playlist-selector').on('click', function (e) {
+            e.preventDefault();
+
+            $('.' + $(this).data('playlist')).toggle();
+            $(this).toggleClass('active');
+
+            return false;
+        });
+
+
+        $('.modal-effect').on('click', function (e) {
+            e.preventDefault();
+
+            var videoId = $(this).data('video-id');
+            var videoUrl = $('#' + videoId).data('url');
+            var effect = $(this).attr('data-effect');
+            var videoTitle = b64DecodeUnicode($('#' + videoId).data('title'));
+            var videoTags = $('#' + videoId).data('tags');
+            var videoDescription = b64DecodeUnicode($('#' + videoId).data('description'));
+
+            var md = window.markdownit();
+            var videoDescription = md.render(videoDescription);
+
+            $('#modal-video-title').text(videoTitle);
+            $('#modal-video-description').html(videoDescription);
+            $('#modal-video-tags').text(videoTags);
+            $('#modal-video-url').attr("src", videoUrl + '?modestbranding=1&rel=0&controls=1&showinfo=0&html5=1&mute=0');
+            $('#modal-video').addClass(effect);
+        });
+
+        $('#modal-video').on('hidden.bs.modal', function (e) {
+            $('#modal-video-title').text("none");
+            $('#modal-video-description').text("none");
+            $('#modal-video-tags').text("none");
+            $('#modal-video-url').attr("src", "");
+            $('#collapse_description').removeClass("show");
+            $('#accordion a').attr("aria-expanded", "false");
+
+            $(this).removeClass(function (index, className) {
+                return(className.match(/(^|\s)effect-\S+/g) || []).join(' ');
+            });
+
+        });
+    });
+</script>

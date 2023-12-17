@@ -30,9 +30,9 @@ class Api
         return $_ENV['API_URL'] . ltrim($uri, '/');
     }
 
-    final public static function contentFortuneAll(string $token): ResponseInterface
+    final public static function contentVideoAll(string $token): ResponseInterface
     {
-        return self::get($token, '/api/admin/content/fortunes/all');
+        return self::get($token, '/videos');
     }
 
     final public static function contentFaqAll(string $token): ResponseInterface

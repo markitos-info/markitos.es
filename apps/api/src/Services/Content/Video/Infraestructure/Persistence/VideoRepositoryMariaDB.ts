@@ -18,7 +18,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
         const conn: mariadb.PoolConnection = await this.connect();
         try {
             await conn.query(
-                'INSERT INTO videos(id,title,description,tags,url,poster,createdAt,playlist,position) value (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                'INSERT INTO videos(id,title,description,tags,url,poster,createdAt,playlist,playlistTitle,position) value (?,?, ?, ?, ?, ?, ?, ?, ?, ?)',
                 [
                     video.id.value,
                     video.title.value,
@@ -28,6 +28,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
                     video.poster.value,
                     video.createdAt,
                     video.playlist?.value,
+                    video.playlistTitle?.value,
                     video.position,
                 ]
             );
@@ -57,7 +58,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
         const conn: mariadb.PoolConnection = await this.connect();
         try {
             const result = await conn.query(
-                'SELECT id,title,description,tags,url,poster,createdAt,playlist,position FROM videos WHERE id=? LIMIT 1',
+                'SELECT id,title,description,tags,url,poster,createdAt,playlist,playlistTitle,position FROM videos WHERE id=? LIMIT 1',
                 [id.value]
             );
 
@@ -70,6 +71,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
                 new Poster(result[0].poster),
                 new Date(result[0].createdAt),
                 new PlaylistId(result[0].playlist),
+                new Title(result[0].playlistTitle),
                 result[0].position
             );
         } catch (err) {
@@ -89,12 +91,12 @@ class VideoRepositoryMariaDB implements VideoRepository {
                     : '';
             const where: string =
                 likeSql !== ''
-                    ? ' WHERE LOWER(title) LIKE ? OR LOWER(description) LIKE ? OR LOWER(tags) LIKE ? '
+                    ? ' WHERE LOWER(title) LIKE ? OR LOWER(description) LIKE ? OR LOWER(playlistTitle) LIKE ? OR LOWER(tags) LIKE ? '
                     : '';
             const values: string[] =
-                likeSql !== '' ? [likeSql, likeSql, likeSql] : [];
+                likeSql !== '' ? [likeSql, likeSql, likeSql, likeSql] : [];
             const sql: string =
-                'SELECT id,title,description,tags,url,poster,createdAt,playlist,position FROM videos ' +
+                'SELECT id,title,description,tags,url,poster,createdAt,playlist,playlistTitle,position FROM videos ' +
                 where +
                 ' ORDER BY createdAt,position';
 
@@ -110,6 +112,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
                         new Poster(item.poster),
                         new Date(item.createdAt),
                         new PlaylistId(<string>item.playlist),
+                        new Title(<string>item.playlistTitle),
                         item.position
                     )
                 );
@@ -129,7 +132,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
             const where: string = ' WHERE playlist=?';
             const values: string[] = [id];
             const sql: string =
-                'SELECT id,title,description,tags,url,poster,createdAt,playlist,position FROM videos ' +
+                'SELECT id,title,description,tags,url,poster,createdAt,playlist,playlistTitle,position FROM videos ' +
                 where +
                 ' ORDER BY createdAt,position';
 
@@ -145,6 +148,7 @@ class VideoRepositoryMariaDB implements VideoRepository {
                         new Poster(item.poster),
                         new Date(item.createdAt),
                         new PlaylistId(<string>item.playlist),
+                        new Title(<string>item.playlistTitle),
                         item.position
                     )
                 );

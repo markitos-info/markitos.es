@@ -22,6 +22,8 @@ export class VideoListAction extends BaseApiAction implements ApiAction {
             });
             this.success(res, response);
         } catch (error) {
+            console.log(error);
+            
             this.failed(res, error as Error);
         }
     }

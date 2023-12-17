@@ -1,0 +1,65 @@
+{% include '/shared/start.html.twig' %}
+
+
+<div class="section-wrapper">
+    <label class="section-title">Videos</label>
+
+    <div class="pd-10 bd bd-gray-800">
+        <ul class="nav nav-pills flex-column flex-md-row" role="tablist">
+            {% for playlist,playlistDecoded in playlists %}
+                <li class="nav-item m-1">
+                    <a class="nav-link playlist-selector active" data-playlist="{{ playlist }}" data-toggle="tab" href="#" role="tab">{{ playlistDecoded }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- pd-10 -->
+
+
+    <div class="section-wrapper mg-t-10 pd-0 bd-0">
+        <div class="row">
+            {% for video in videos %}
+                <div class="col-lg-4 mg-b-10 {{ video.playlist }} " id="{{video.id}}" data-video-id="{{ video.id }}" data-title="{{ video.title }}" data-description="{{ video.description }}" data-tags="{{ video.tags }}" data-url="{{ video.url }}">
+                    <div class="card modal-effect" href="#modal-video" data-toggle="modal" data-effect="effect-scale" data-video-id="{{ video.id }}">
+                        <img class="img-fluid" src="{{ video.poster }}" alt="{{ video.title }}">
+                        <div class="card-body">
+                            <p class="card-text" id="video-item-title">
+                                {{ video.title_decoded }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="modal-video" class="modal fade" data-keyboard="true" tabindex='-1'>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content tx-size-sm">
+                <div class="modal-header pd-x-20">
+                    <h6 class="tx-14 mg-b-0 tx-uppercase tx-inverse tx-bold" id="modal-video-title"></h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pd-20">
+                    <h5 class=" lh-3 mg-b-20" id="modal-video-content-box"></h5>
+                    <iframe src="" class="myIframe" width="100%" height="315" frameborder="0" allowfullscreen autoplay="1" enablejsapi="1" id="modal-video-url"></iframe>
+
+                    <div id="accordion" class="accordion-one" role="tablist" aria-multiselectable="true">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_description" aria-expanded="false" aria-controls="collapse_description" class="btn btn-dark wd-100p mg-b-10">
+                            detalles
+                        </a>
+                        <div id="collapse_description" class="collapse" role="tabpanel" aria-labelledby="description">
+                            <p class="mg-b-5" id="modal-video-description"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include '/shared/end.html.twig' %}

@@ -11,14 +11,13 @@ const playlists = videos
 
 playlists.then((playlist) => {
     playlist.forEach(async(item) => {
-        await videos.getPlaylist(item.id, key).then((videos) => {
+        await videos.getPlaylist(item, key).then((videos) => {
             videos.forEach(async(video) => {
                 createVideo(video);
             });
         });
     });
 });
-
 const createVideo = async(video: VideoType) => {
     const poster: string = await Base64Danko.fromImageUrlToBase64ToString(
         video.poster
@@ -30,6 +29,7 @@ const createVideo = async(video: VideoType) => {
         url: video.url,
         poster,
         playlist: video.playlist,
+        playlistTitle: await Base64Danko.fromStringToBase64(video.playlistTitle as string),
         position: video.position,
     };
 

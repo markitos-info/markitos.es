@@ -10,6 +10,7 @@ interface VideoType extends PrimitiveType {
     poster: string;
     createdAt: Date;
     playlist: string | undefined;
+    playlistTitle: string | undefined;
     position: number | undefined;
 }
 

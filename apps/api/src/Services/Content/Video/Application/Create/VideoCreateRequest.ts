@@ -7,6 +7,7 @@ class VideoCreateRequest {
         public readonly url: string,
         public poster: string,
         public readonly playlist: string | undefined,
+        public readonly playlistTitle: string | undefined,
         public readonly position: number | undefined
     ) {}
 }

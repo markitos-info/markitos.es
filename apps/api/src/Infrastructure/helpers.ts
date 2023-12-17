@@ -21,6 +21,7 @@ export const processVideo = async(
     video.poster = getPosterUrl(req, video.id);
     video.title = await Base64Danko.fromBase64ToString(video.title);
     video.description = await Base64Danko.fromBase64ToString(video.description);
+    video.playlistTitle = await Base64Danko.fromBase64ToString(video.playlistTitle as string);
 
     return video;
 };

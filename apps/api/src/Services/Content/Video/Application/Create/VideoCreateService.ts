@@ -40,6 +40,7 @@ class VideoCreateService {
             new Poster(request.poster),
             new Date(),
             new PlaylistId(<string>request.playlist),
+            new Title(<string>request.playlistTitle),
             request.position
         );
     }

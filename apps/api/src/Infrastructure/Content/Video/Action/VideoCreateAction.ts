@@ -28,6 +28,7 @@ export class VideoCreateAction extends BaseApiAction implements ApiAction {
                 req.body.url,
                 req.body.poster,
                 req.body.playlist,
+                req.body.playlistTitle,
                 req.body.position
             );
 

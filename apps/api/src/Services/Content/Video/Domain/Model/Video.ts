@@ -18,6 +18,7 @@ class Video implements ToPrimitiveTypeResult {
         public readonly poster: Poster,
         public readonly createdAt: Date,
         public readonly playlist?: PlaylistId | undefined,
+        public readonly playlistTitle?: Title | undefined,
         public readonly position?: number | undefined
     ) {}
 
@@ -30,6 +31,7 @@ class Video implements ToPrimitiveTypeResult {
         poster: Poster,
         createdAt?: Date,
         playlist?: PlaylistId | undefined,
+        playlistTitle?: Title | undefined,
         position?: number | undefined
     ): Video {
         let created: Date = new Date();
@@ -46,6 +48,7 @@ class Video implements ToPrimitiveTypeResult {
             poster,
             created,
             playlist,
+            playlistTitle,
             position
         );
     }
@@ -61,6 +64,7 @@ class Video implements ToPrimitiveTypeResult {
             poster: this.poster.value,
             createdAt: this.createdAt,
             playlist: this.playlist?.value,
+            playlistTitle: this.playlistTitle?.value,
             position: this.position,
         };
     }
