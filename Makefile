@@ -9,6 +9,8 @@ restart:
 	bash ./docker/bin/stop.sh ; bash ./docker/bin/start.sh &
 apish:
 	bash ./docker/bin/apish.sh
+adminsh:
+	bash ./docker/bin/adminsh.sh
 frontendsh:
 	bash ./docker/bin/frontendsh.sh
 mariadbsh:

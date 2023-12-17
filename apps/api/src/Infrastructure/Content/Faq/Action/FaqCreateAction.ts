@@ -22,7 +22,7 @@ export class FaqCreateAction implements ApiAction {
 
             await service.execute(request);
 
-            res.status(HttpStatus.OK).send();
+            res.status(HttpStatus.CREATED).send();
         } catch (error) {
             res.status(HttpStatus.BAD_REQUEST).send((<Error>error).message);
         }

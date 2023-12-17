@@ -77,5 +77,22 @@ services:
       markitos-apps-network:
         ipv4_address: 172.27.10.12
 
+  markitos.admin:
+    user: "1000:1000"
+    build: admin
+    container_name: "markitos.admin"
+    image: "markitos.admin.dev"
+    restart: always
+    ports:
+      - 8881:80
+    volumes:
+      - ../apps/admin/:/app/
+    hostname: markitos.admin
+    extra_hosts:
+      - "markitos.api:172.27.10.14"
+    networks:
+      markitos-apps-network:
+        ipv4_address: 172.27.10.15
+
 volumes:
   markitos_mariadb_dev_data:
