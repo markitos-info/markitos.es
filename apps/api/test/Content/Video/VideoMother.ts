@@ -18,6 +18,7 @@ import Video from '../../../src/Services/Content/Video/Domain/Model/Video';
 import VideoRepository from '../../../src/Services/Content/Video/Domain/Persistence/VideoRepository';
 import PlaylistId from '../../../src/Services/Content/Video/Domain/ValueObject/PlaylistId';
 import Base64ImageWriter from '../../../src/Services/Shared/Domain/Lib/Base64ImageWriter';
+import Title from '../../../src/Services/Shared/Domain/ValueObject/Title';
 import { SharedMother } from '../../Shared/SharedMother';
 
 class VideoMother {
@@ -109,7 +110,8 @@ class VideoMother {
         url?: string,
         poster?: string,
         playlist?: string | undefined,
-        position?: number | undefined
+        position?: number | undefined,
+        playlistTitle?: string | undefined,
     ): VideoCreateRequest {
         return new VideoCreateRequest(
             id !== undefined ? id : SharedMother.Id().value,
@@ -119,6 +121,7 @@ class VideoMother {
             url !== undefined ? url : SharedMother.Youtube().value,
             poster !== undefined ? poster : SharedMother.BASE64_PNG_IMAGE,
             playlist !== undefined ? playlist : VideoMother.PlaylistId().value,
+            playlistTitle !== undefined ? playlistTitle : VideoMother.PlaylistTitle().value,
             position !== undefined ? position : 0
         );
     }
@@ -132,7 +135,14 @@ class VideoMother {
             SharedMother.Youtube(),
             SharedMother.Poster(),
             new Date(),
-            VideoMother.PlaylistId()
+            VideoMother.PlaylistId(),
+            VideoMother.PlaylistTitle()
+        );
+    }
+
+    public static PlaylistTitle(value?: string): Title {
+        return new Title(
+            value !== undefined ? value : SharedMother.BASE64_TEXT
         );
     }
 
@@ -156,6 +166,7 @@ class VideoMother {
             ),
             VideoMother.VIDEO_CREATED_AT,
             VideoMother.PlaylistId(),
+            VideoMother.PlaylistTitle(),
             position
         );
     }

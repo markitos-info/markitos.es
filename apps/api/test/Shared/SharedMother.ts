@@ -132,7 +132,7 @@ export class SharedMother {
             value !== undefined ? value : SharedMother.BASE64_TEXT
         );
     }
-
+    
     public static LimitedString(value?: string): LimitedString {
         return new LimitedString(
             value !== undefined

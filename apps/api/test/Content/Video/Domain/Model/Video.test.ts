@@ -29,6 +29,11 @@ describe('Video model', () => {
             VideoMother.PlaylistId().value
         );
 
+        expect(sut.playlistTitle).toBeInstanceOf(Title);
+        expect(sut.playlistTitle?.value).toStrictEqual(
+            VideoMother.PlaylistTitle().value
+        );
+
         expect(sut.description).toBeInstanceOf(Description);
         expect(sut.description.value).toStrictEqual(SharedMother.BASE64_TEXT);
         expect(sut.createdAt).toBeInstanceOf(Date);
