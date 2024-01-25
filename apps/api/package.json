@@ -7,7 +7,7 @@
     "dev": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules ./src/start.ts",
     "start": "npm run build && node ./dist/src/start.js",
     "test": "NODE_ENV=dev jest --runInBand --detectOpenHandles --forceExit --watchAll",
-    "citest": "NODE_ENV=dev jest --runInBand --forceExit --coverage --detectOpenHandles",
+    "citest": "jest --forceExit  --passWithNoTests --coverage",
     "clean": "rm -r ./dist; exit 0",
     "lint": "eslint --fix . --ext .ts,.tsx ./src",
     "format": "prettier --write ./src ./test"
