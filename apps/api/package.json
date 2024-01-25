@@ -80,6 +80,11 @@
     "uuid": "9.0.1"
   },
   "jest": {
-   "coverageDirectory": "<rootDir>"
+    "testEnvironment": "node"
+  },
+  "jestSonar": {
+    "reportPath": "./",
+    "reportFile": "test-report.xml",
+    "indent": 4
   }
 }
