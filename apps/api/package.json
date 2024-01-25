@@ -78,13 +78,5 @@
     "node-dependency-injection": "3.0.3",
     "react-event-listener": "0.6.6",
     "uuid": "9.0.1"
-  },
-  "jest": {
-    "testEnvironment": "node"
-  },
-  "jestSonar": {
-    "reportPath": "./",
-    "reportFile": "test-report.xml",
-    "indent": 4
   }
 }
